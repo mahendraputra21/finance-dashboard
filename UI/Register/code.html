@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Registration Page - Finance Dashboard</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2463eb",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#111621",
+                        "card-dark": "#1a202c", // Adjusted for better dark mode contrast
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased min-h-screen flex flex-col items-center justify-center p-4">
+<!-- Centered Card Container -->
+<div class="w-full max-w-[520px] bg-white dark:bg-[#1a202c] rounded-xl shadow-sm border border-[#dbdee6] dark:border-gray-800 overflow-hidden">
+<!-- Header Section -->
+<div class="pt-8 px-8 pb-4">
+<div class="flex flex-col gap-2 text-center">
+<!-- Optional Brand Logo Placeholder -->
+<div class="mx-auto mb-2 flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-3xl">account_balance_wallet</span>
+</div>
+<h1 class="text-[#111318] dark:text-white text-[32px] font-bold leading-tight tracking-tight">Create an Account</h1>
+<p class="text-[#616e89] dark:text-gray-400 text-sm font-normal leading-normal">Start tracking your finances today.</p>
+</div>
+</div>
+<!-- Form Section -->
+<div class="px-8 pb-8">
+<form action="#" class="flex flex-col gap-5">
+<!-- Full Name -->
+<label class="flex flex-col gap-2">
+<span class="text-[#111318] dark:text-gray-200 text-sm font-medium leading-normal">Full Name</span>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111318] dark:text-white border border-[#dbdee6] dark:border-gray-600 bg-white dark:bg-gray-800 focus:outline-0 focus:ring-2 focus:ring-primary/20 focus:border-primary h-12 placeholder:text-[#616e89] dark:placeholder:text-gray-500 px-4 text-base font-normal leading-normal transition-all" placeholder="Enter your full name" required="" type="text"/>
+</label>
+<!-- Email Address -->
+<label class="flex flex-col gap-2">
+<span class="text-[#111318] dark:text-gray-200 text-sm font-medium leading-normal">Email Address</span>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111318] dark:text-white border border-[#dbdee6] dark:border-gray-600 bg-white dark:bg-gray-800 focus:outline-0 focus:ring-2 focus:ring-primary/20 focus:border-primary h-12 placeholder:text-[#616e89] dark:placeholder:text-gray-500 px-4 text-base font-normal leading-normal transition-all" placeholder="Enter your email address" required="" type="email"/>
+</label>
+<!-- Passwords Row -->
+<div class="flex flex-col sm:flex-row gap-4">
+<label class="flex flex-col gap-2 flex-1">
+<span class="text-[#111318] dark:text-gray-200 text-sm font-medium leading-normal">Password</span>
+<div class="relative">
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111318] dark:text-white border border-[#dbdee6] dark:border-gray-600 bg-white dark:bg-gray-800 focus:outline-0 focus:ring-2 focus:ring-primary/20 focus:border-primary h-12 placeholder:text-[#616e89] dark:placeholder:text-gray-500 px-4 text-base font-normal leading-normal transition-all" placeholder="Create a password" required="" type="password"/>
+</div>
+</label>
+<label class="flex flex-col gap-2 flex-1">
+<span class="text-[#111318] dark:text-gray-200 text-sm font-medium leading-normal">Confirm Password</span>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111318] dark:text-white border border-[#dbdee6] dark:border-gray-600 bg-white dark:bg-gray-800 focus:outline-0 focus:ring-2 focus:ring-primary/20 focus:border-primary h-12 placeholder:text-[#616e89] dark:placeholder:text-gray-500 px-4 text-base font-normal leading-normal transition-all" placeholder="Re-enter password" required="" type="password"/>
+</label>
+</div>
+<!-- Role Selection -->
+<div class="flex flex-col gap-2">
+<span class="text-[#111318] dark:text-gray-200 text-sm font-medium leading-normal">Select Role</span>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3" style="--radio-dot-svg: url('data:image/svg+xml,%3csvg viewBox=%270 0 16 16%27 fill=%27rgb(36,99,235)%27 xmlns=%27http://www.w3.org/2000/svg%27%3e%3ccircle cx=%278%27 cy=%278%27 r=%273%27/%3e%3c/svg%3e');">
+<!-- Admin Option -->
+<label class="relative flex cursor-pointer rounded-lg border border-solid border-[#dbdee6] dark:border-gray-600 p-4 hover:bg-background-light dark:hover:bg-gray-800 transition-colors has-[:checked]:border-primary has-[:checked]:bg-primary/5 dark:has-[:checked]:bg-primary/10">
+<input class="mt-1 h-4 w-4 shrink-0 border-gray-300 dark:border-gray-500 text-primary focus:ring-primary bg-transparent" name="role" type="radio"/>
+<div class="ml-3 flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="text-[#111318] dark:text-white text-sm font-medium leading-normal">Admin</span>
+<span class="group relative flex items-center justify-center">
+<span class="material-symbols-outlined text-[#616e89] hover:text-primary text-[16px] cursor-help">info</span>
+<!-- Tooltip -->
+<div class="absolute bottom-full left-1/2 mb-2 hidden w-48 -translate-x-1/2 rounded bg-gray-900 p-2 text-xs text-white group-hover:block z-10 text-center shadow-lg">
+                                            Admin has full access to settings and user management.
+                                        </div>
+</span>
+</div>
+<span class="text-[#616e89] dark:text-gray-400 text-xs font-normal leading-normal mt-1">Full access to settings</span>
+</div>
+</label>
+<!-- User Option -->
+<label class="relative flex cursor-pointer rounded-lg border border-solid border-[#dbdee6] dark:border-gray-600 p-4 hover:bg-background-light dark:hover:bg-gray-800 transition-colors has-[:checked]:border-primary has-[:checked]:bg-primary/5 dark:has-[:checked]:bg-primary/10">
+<input checked="" class="mt-1 h-4 w-4 shrink-0 border-gray-300 dark:border-gray-500 text-primary focus:ring-primary bg-transparent" name="role" type="radio"/>
+<div class="ml-3 flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="text-[#111318] dark:text-white text-sm font-medium leading-normal">User</span>
+<span class="group relative flex items-center justify-center">
+<span class="material-symbols-outlined text-[#616e89] hover:text-primary text-[16px] cursor-help">info</span>
+<!-- Tooltip -->
+<div class="absolute bottom-full left-1/2 mb-2 hidden w-48 -translate-x-1/2 rounded bg-gray-900 p-2 text-xs text-white group-hover:block z-10 text-center shadow-lg">
+                                            User has restricted access: View &amp; Input transactions only.
+                                        </div>
+</span>
+</div>
+<span class="text-[#616e89] dark:text-gray-400 text-xs font-normal leading-normal mt-1">View &amp; Input only</span>
+</div>
+</label>
+</div>
+</div>
+<!-- Submit Button -->
+<button class="flex w-full min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-blue-600 transition-colors mt-2">
+<span class="truncate">Sign Up</span>
+</button>
+<!-- Footer Link -->
+<div class="text-center pt-2">
+<p class="text-[#616e89] dark:text-gray-400 text-sm font-normal leading-normal">
+                        Already have an account? 
+                        <a class="text-primary hover:text-blue-600 font-medium hover:underline" href="#">Log in</a>
+</p>
+</div>
+</form>
+</div>
+</div>
+<!-- Decorative background element for modern feel -->
+<div class="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none overflow-hidden">
+<div class="absolute top-[-10%] right-[-5%] w-[400px] h-[400px] bg-primary/5 rounded-full blur-3xl"></div>
+<div class="absolute bottom-[-10%] left-[-5%] w-[400px] h-[400px] bg-blue-400/5 rounded-full blur-3xl"></div>
+</div>
+</body></html>

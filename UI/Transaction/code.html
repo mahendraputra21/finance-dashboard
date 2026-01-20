@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FinanceDash - New Transaction</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2463eb",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#111621",
+                        "income-green": "#16a34a",
+                        "expense-red": "#dc2626",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom styles for radio checked states to simulate the toggle color change */
+        input[type="radio"]:checked + span {
+            color: #111318;
+            background-color: white;
+            box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+        }
+        
+        /* Specific styling for the expense toggle when checked */
+        #expense-radio:checked + span {
+            color: #dc2626; /* text-expense-red */
+        }
+        
+        /* Specific styling for the income toggle when checked */
+        #income-radio:checked + span {
+            color: #16a34a; /* text-income-green */
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111318] dark:text-white">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#e5e7eb] dark:border-b-[#2a2f3d] bg-white dark:bg-[#111621] px-10 py-3 shadow-sm">
+<div class="flex items-center gap-4 text-[#111318] dark:text-white">
+<div class="flex items-center justify-center rounded-lg bg-primary/10 p-2">
+<span class="material-symbols-outlined text-primary">account_balance_wallet</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">FinanceDash</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<nav class="hidden md:flex items-center gap-9">
+<a class="text-[#616e89] dark:text-[#9ca3af] hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Dashboard</a>
+<a class="text-primary text-sm font-medium leading-normal" href="#">Transactions</a>
+<a class="text-[#616e89] dark:text-[#9ca3af] hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Reports</a>
+<a class="text-[#616e89] dark:text-[#9ca3af] hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Settings</a>
+</nav>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border border-[#e5e7eb] dark:border-[#2a2f3d]" data-alt="User profile avatar showing a smiling person" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAqmEjBqsecM3P7O2jdJqNK6psJw1aPlhMyKGfMpC8I68nhbhVgZtbs_K16HvNXOPbtbYXHfVqZAroqKrJbD-ZpxUSTFsa1f9hQfpYllhTY5WHaaPImTIF0Q9xC1kZATDP3Bl6GhH7i74PNGnNyp-bziGZN2ndY4pfW7abB3rJTGWR37OrBacsc3t4AFUjLWNpUi9e1u9VgAhK0Mjt3AQJoTjB4I9UibCfA3JmuIJ--7JIzklu8sjeXQTKaiijh3NCRH2ZP4ce0EA");'></div>
+</div>
+</header>
+<main class="flex-1 flex flex-col items-center justify-start py-10 px-4 md:px-10">
+<div class="w-full max-w-[640px] flex flex-col gap-6">
+<!-- Page Heading -->
+<div class="flex flex-col gap-2 text-center md:text-left">
+<h1 class="text-[#111318] dark:text-white text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em]">Tambah Transaksi Baru</h1>
+<p class="text-[#616e89] dark:text-[#9ca3af] text-base font-normal leading-normal">Catat detail transaksi untuk memantau arus kas Anda.</p>
+</div>
+<!-- Main Form Card -->
+<div class="flex flex-col rounded-xl border border-[#e5e7eb] dark:border-[#2a2f3d] bg-white dark:bg-[#1a202c] shadow-sm p-6 md:p-8 gap-8">
+<!-- Transaction Type Toggle -->
+<div class="w-full">
+<label class="block text-sm font-medium text-[#111318] dark:text-white mb-2">Jenis Transaksi</label>
+<div class="flex h-12 w-full items-center justify-center rounded-lg bg-[#f0f1f4] dark:bg-[#2d3748] p-1">
+<label class="cursor-pointer h-full flex-1 relative">
+<input class="peer sr-only" id="income-radio" name="transaction_type" type="radio" value="income"/>
+<span class="flex h-full w-full items-center justify-center rounded-md text-sm font-medium text-[#616e89] dark:text-[#a0aec0] transition-all duration-200">
+<span class="material-symbols-outlined mr-2 text-[18px]">trending_up</span>
+                                    Pemasukan
+                                </span>
+</label>
+<label class="cursor-pointer h-full flex-1 relative">
+<input checked="" class="peer sr-only" id="expense-radio" name="transaction_type" type="radio" value="expense"/>
+<span class="flex h-full w-full items-center justify-center rounded-md text-sm font-medium text-[#616e89] dark:text-[#a0aec0] transition-all duration-200">
+<span class="material-symbols-outlined mr-2 text-[18px]">trending_down</span>
+                                    Pengeluaran
+                                </span>
+</label>
+</div>
+</div>
+<!-- Nominal Input (Hero) -->
+<div class="flex flex-col gap-2">
+<label class="text-[#111318] dark:text-white text-base font-medium leading-normal">Nominal (Rp)</label>
+<div class="relative flex items-center">
+<span class="absolute left-4 text-[#616e89] dark:text-[#9ca3af] text-2xl font-bold">Rp</span>
+<input autofocus="" class="w-full bg-transparent border-b-2 border-[#e5e7eb] dark:border-[#2a2f3d] focus:border-expense-red dark:focus:border-expense-red py-2 pl-12 pr-4 text-4xl font-bold text-[#111318] dark:text-white placeholder-[#cbd5e1] focus:ring-0 transition-colors" placeholder="0" type="text"/>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Category Dropdown -->
+<div class="flex flex-col gap-2">
+<label class="text-[#111318] dark:text-white text-sm font-medium leading-normal">Kategori</label>
+<div class="relative">
+<select class="w-full appearance-none rounded-lg border border-[#dbdee6] dark:border-[#4a5568] bg-white dark:bg-[#2d3748] px-4 py-3 pr-10 text-base text-[#111318] dark:text-white focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary">
+<option disabled="" selected="" value="">Pilih Kategori...</option>
+<option value="food">Makanan &amp; Minuman</option>
+<option value="transport">Transportasi</option>
+<option value="shopping">Belanja</option>
+<option value="bills">Tagihan</option>
+<option value="salary">Gaji</option>
+<option value="investment">Investasi</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-[#616e89]">
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Date Picker -->
+<div class="flex flex-col gap-2">
+<label class="text-[#111318] dark:text-white text-sm font-medium leading-normal">Tanggal</label>
+<div class="relative">
+<input class="w-full rounded-lg border border-[#dbdee6] dark:border-[#4a5568] bg-white dark:bg-[#2d3748] px-4 py-3 text-base text-[#111318] dark:text-white focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary" type="date" value="2023-10-27"/>
+<div class="pointer-events-none absolute inset-y-0 right-4 flex items-center justify-center text-[#616e89]">
+<!-- Calendar icon normally provided by browser, this is decorative overlay if browser allows or spacing -->
+</div>
+</div>
+</div>
+</div>
+<!-- Notes Textarea -->
+<div class="flex flex-col gap-2">
+<label class="text-[#111318] dark:text-white text-sm font-medium leading-normal">Catatan (Opsional)</label>
+<textarea class="min-h-[100px] w-full resize-y rounded-lg border border-[#dbdee6] dark:border-[#4a5568] bg-white dark:bg-[#2d3748] px-4 py-3 text-base text-[#111318] dark:text-white placeholder-[#9ca3af] focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary" placeholder="Tulis deskripsi singkat transaksi ini..."></textarea>
+</div>
+<!-- Action Buttons -->
+<div class="flex items-center justify-end gap-4 pt-4 border-t border-[#f0f1f4] dark:border-[#2a2f3d]">
+<button class="flex h-10 min-w-[84px] items-center justify-center rounded-lg px-4 text-sm font-bold text-[#616e89] hover:bg-[#f0f1f4] dark:text-[#a0aec0] dark:hover:bg-[#2d3748] transition-colors">
+                            Batal
+                        </button>
+<button class="flex h-10 min-w-[84px] items-center justify-center rounded-lg bg-primary px-6 text-sm font-bold text-white shadow-sm hover:bg-blue-600 transition-colors">
+<span class="material-symbols-outlined mr-2 text-[18px]">save</span>
+                            Simpan Transaksi
+                        </button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

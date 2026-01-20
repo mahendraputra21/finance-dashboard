@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Manage Categories - Admin</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2463eb",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#111621",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1e293b",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for cleaner look */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #475569;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white antialiased transition-colors duration-200">
+<div class="flex h-screen w-full overflow-hidden">
+<!-- SIDEBAR -->
+<aside class="w-64 flex-shrink-0 border-r border-slate-200 dark:border-slate-800 bg-surface-light dark:bg-surface-dark flex flex-col justify-between hidden md:flex">
+<div class="p-6">
+<!-- Logo / App Name -->
+<div class="flex gap-3 mb-8 items-center">
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 shrink-0 shadow-sm" data-alt="Abstract blue geometric logo for finance app" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCDwr-yapayyKEvtExFg58g3anA_y6pyHVig5H6m4yvyH3d46xCblwpTeL8wIv0_QDXUcOP5XIrbK-IAy7ApH2I-QEHsQ-BMQVEl1PwavYRcZgh2P2Cua3iYVCUlowam7F0a68fmwi0Cj6dPY0phn1gqVq4KWXWS3u7VoBq4CkriF699AyjwrF5jBeUjMFIjykuJBnKD1wXUYN7Z9v2AySRF61Cew4c-7kmPap8M9OClJILGU0lj3hB-pmtWJGvDhXsTvna7EhbDA");'>
+</div>
+<div class="flex flex-col">
+<h1 class="text-slate-900 dark:text-white text-base font-bold leading-tight">Finance MVP</h1>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-normal">Admin Console</p>
+</div>
+</div>
+<!-- Navigation -->
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700/50 transition-colors group" href="#">
+<span class="material-symbols-outlined text-slate-500 dark:text-slate-400 group-hover:text-primary transition-colors">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700/50 transition-colors group" href="#">
+<span class="material-symbols-outlined text-slate-500 dark:text-slate-400 group-hover:text-primary transition-colors">payments</span>
+<span class="text-sm font-medium">Transactions</span>
+</a>
+<!-- Active State -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 text-primary dark:text-blue-400 font-medium" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">category</span>
+<span class="text-sm">Categories</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700/50 transition-colors group" href="#">
+<span class="material-symbols-outlined text-slate-500 dark:text-slate-400 group-hover:text-primary transition-colors">bar_chart</span>
+<span class="text-sm font-medium">Reports</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700/50 transition-colors group" href="#">
+<span class="material-symbols-outlined text-slate-500 dark:text-slate-400 group-hover:text-primary transition-colors">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</nav>
+</div>
+<!-- Bottom User Profile -->
+<div class="p-4 border-t border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-3 px-2 py-2 cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-700/50 rounded-lg transition-colors">
+<div class="size-9 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center overflow-hidden">
+<img alt="Admin User Profile" class="w-full h-full object-cover" data-alt="Portrait of a smiling man with glasses" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAuAKYEAqAIdmomuzFRoobgdnXIOzD1PHaAQchPUiFKxV7eh0EpTsOBdQ1W4Q8ILmIHX-xVTaJVlmQswyv7lXdnOHZFx3MrSXX9XPy68qA2GVJAdDJYy0j7Yilhvc3UXoz2v4JxVEqgrwUxNurB48AHsQK4QLX6-Gf9WTMaDTCLF0xNY_PrYKWZX_yi-n1TVh6ieFFk-kRrofmPxTAC1lH7BJpe4LueQRAtIVVlFvQvT24CXGERfrSWDbkLlAzeEJj8uB3svwxbQ"/>
+</div>
+<div class="flex flex-col overflow-hidden">
+<p class="text-sm font-semibold text-slate-900 dark:text-white truncate">Admin User</p>
+<p class="text-xs text-slate-500 dark:text-slate-400 truncate">admin@financemvp.com</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- MAIN CONTENT -->
+<main class="flex-1 flex flex-col h-full overflow-hidden relative">
+<!-- Mobile Header -->
+<header class="md:hidden flex items-center justify-between p-4 bg-surface-light dark:bg-surface-dark border-b border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-300">menu</span>
+<span class="font-bold text-lg text-slate-900 dark:text-white">Finance MVP</span>
+</div>
+<div class="size-8 rounded-full bg-slate-200 overflow-hidden">
+<img alt="Admin User Profile" class="w-full h-full object-cover" data-alt="Portrait of a smiling man with glasses" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0ziEgidA6fHpYIFYMf2gIoyKXWHucQZVBOZLULe5GIhI-0Ld1N4lRWKWID84EwjHCrCkaeXrCXuXR2gfnH1xLTHCee0nLThYKv41v2rUnSwMdbRrHfe52lHmebpXIebljZ-pQFBTikYTrPcvFA-u_6b2FdzYTAqQrGqL-qLcGVyDZ4M7WtHZyLjOo9TgOlanDXBUhTkEHO2QTJru-JmipJGNQrRUZPOMWuYjeDwmkRCeniOM_NSTf3hp9gSploQfme5zCFYKhMA"/>
+</div>
+</header>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto p-4 md:p-8 lg:p-12">
+<div class="max-w-6xl mx-auto flex flex-col gap-8">
+<!-- Breadcrumbs -->
+<nav class="flex flex-wrap gap-2 items-center text-sm">
+<a class="text-slate-500 hover:text-primary transition-colors font-medium" href="#">Dashboard</a>
+<span class="text-slate-400 font-medium">/</span>
+<a class="text-slate-500 hover:text-primary transition-colors font-medium" href="#">Settings</a>
+<span class="text-slate-400 font-medium">/</span>
+<span class="text-slate-900 dark:text-white font-semibold">Manage Categories</span>
+</nav>
+<!-- Page Header -->
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+<div class="flex flex-col gap-2">
+<h1 class="text-slate-900 dark:text-white text-3xl md:text-4xl font-black tracking-tight">Manage Categories</h1>
+<p class="text-slate-500 dark:text-slate-400 text-base md:text-lg max-w-2xl">
+                                Organize your income and expense taxonomy. These categories will be used for transaction tagging and reporting.
+                            </p>
+</div>
+<button class="shrink-0 flex items-center justify-center gap-2 h-11 px-6 rounded-lg bg-primary hover:bg-blue-600 active:bg-blue-700 text-white font-semibold shadow-lg shadow-blue-500/20 transition-all transform active:scale-95">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span>Kategori</span>
+</button>
+</div>
+<!-- Layout: Dual Columns -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<!-- LEFT COLUMN: INCOME -->
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between px-1">
+<h3 class="text-slate-900 dark:text-white text-lg font-bold flex items-center gap-2">
+<span class="w-2 h-6 rounded-full bg-emerald-500 block"></span>
+                                    Kategori Pemasukan
+                                    <span class="bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 text-xs px-2 py-0.5 rounded-full font-bold ml-2">5</span>
+</h3>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden flex flex-col divide-y divide-slate-100 dark:divide-slate-800">
+<!-- Item 1 -->
+<div class="group flex items-center gap-4 p-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<div class="flex shrink-0 items-center justify-center rounded-lg bg-emerald-50 dark:bg-emerald-900/20 size-12 text-2xl shadow-sm border border-emerald-100 dark:border-emerald-800/30">
+                                        💰
+                                    </div>
+<div class="flex-1 flex flex-col justify-center min-w-0">
+<p class="text-slate-900 dark:text-white text-base font-semibold truncate">Salary</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs truncate">Monthly paycheck &amp; bonuses</p>
+</div>
+<div class="flex gap-1 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-slate-400 hover:text-primary hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="group flex items-center gap-4 p-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<div class="flex shrink-0 items-center justify-center rounded-lg bg-emerald-50 dark:bg-emerald-900/20 size-12 text-2xl shadow-sm border border-emerald-100 dark:border-emerald-800/30">
+                                        📈
+                                    </div>
+<div class="flex-1 flex flex-col justify-center min-w-0">
+<p class="text-slate-900 dark:text-white text-base font-semibold truncate">Investments</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs truncate">Dividends, stock sales</p>
+</div>
+<div class="flex gap-1 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-slate-400 hover:text-primary hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="group flex items-center gap-4 p-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<div class="flex shrink-0 items-center justify-center rounded-lg bg-emerald-50 dark:bg-emerald-900/20 size-12 text-2xl shadow-sm border border-emerald-100 dark:border-emerald-800/30">
+                                        💻
+                                    </div>
+<div class="flex-1 flex flex-col justify-center min-w-0">
+<p class="text-slate-900 dark:text-white text-base font-semibold truncate">Freelance</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs truncate">Side projects &amp; consulting</p>
+</div>
+<div class="flex gap-1 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-slate-400 hover:text-primary hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+<!-- Item 4 -->
+<div class="group flex items-center gap-4 p-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<div class="flex shrink-0 items-center justify-center rounded-lg bg-emerald-50 dark:bg-emerald-900/20 size-12 text-2xl shadow-sm border border-emerald-100 dark:border-emerald-800/30">
+                                        🎁
+                                    </div>
+<div class="flex-1 flex flex-col justify-center min-w-0">
+<p class="text-slate-900 dark:text-white text-base font-semibold truncate">Gifts</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs truncate">Cash gifts received</p>
+</div>
+<div class="flex gap-1 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-slate-400 hover:text-primary hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+<!-- Item 5 -->
+<div class="group flex items-center gap-4 p-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<div class="flex shrink-0 items-center justify-center rounded-lg bg-emerald-50 dark:bg-emerald-900/20 size-12 text-2xl shadow-sm border border-emerald-100 dark:border-emerald-800/30">
+                                        🏠
+                                    </div>
+<div class="flex-1 flex flex-col justify-center min-w-0">
+<p class="text-slate-900 dark:text-white text-base font-semibold truncate">Rental</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs truncate">Property income</p>
+</div>
+<div class="flex gap-1 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-slate-400 hover:text-primary hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: EXPENSE -->
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between px-1">
+<h3 class="text-slate-900 dark:text-white text-lg font-bold flex items-center gap-2">
+<span class="w-2 h-6 rounded-full bg-red-500 block"></span>
+                                    Kategori Pengeluaran
+                                    <span class="bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 text-xs px-2 py-0.5 rounded-full font-bold ml-2">4</span>
+</h3>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden flex flex-col divide-y divide-slate-100 dark:divide-slate-800">
+<!-- Item 1 -->
+<div class="group flex items-center gap-4 p-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<div class="flex shrink-0 items-center justify-center rounded-lg bg-red-50 dark:bg-red-900/20 size-12 text-2xl shadow-sm border border-red-100 dark:border-red-800/30">
+                                        🍔
+                                    </div>
+<div class="flex-1 flex flex-col justify-center min-w-0">
+<p class="text-slate-900 dark:text-white text-base font-semibold truncate">Food &amp; Dining</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs truncate">Groceries, restaurants, snacks</p>
+</div>
+<div class="flex gap-1 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-slate-400 hover:text-primary hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="group flex items-center gap-4 p-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<div class="flex shrink-0 items-center justify-center rounded-lg bg-red-50 dark:bg-red-900/20 size-12 text-2xl shadow-sm border border-red-100 dark:border-red-800/30">
+                                        🚗
+                                    </div>
+<div class="flex-1 flex flex-col justify-center min-w-0">
+<p class="text-slate-900 dark:text-white text-base font-semibold truncate">Transport</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs truncate">Fuel, uber, public transit</p>
+</div>
+<div class="flex gap-1 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-slate-400 hover:text-primary hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="group flex items-center gap-4 p-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<div class="flex shrink-0 items-center justify-center rounded-lg bg-red-50 dark:bg-red-900/20 size-12 text-2xl shadow-sm border border-red-100 dark:border-red-800/30">
+                                        💡
+                                    </div>
+<div class="flex-1 flex flex-col justify-center min-w-0">
+<p class="text-slate-900 dark:text-white text-base font-semibold truncate">Utilities</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs truncate">Electricity, water, internet</p>
+</div>
+<div class="flex gap-1 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-slate-400 hover:text-primary hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+<!-- Item 4 -->
+<div class="group flex items-center gap-4 p-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<div class="flex shrink-0 items-center justify-center rounded-lg bg-red-50 dark:bg-red-900/20 size-12 text-2xl shadow-sm border border-red-100 dark:border-red-800/30">
+                                        🏠
+                                    </div>
+<div class="flex-1 flex flex-col justify-center min-w-0">
+<p class="text-slate-900 dark:text-white text-base font-semibold truncate">Rent</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs truncate">Monthly apartment rent</p>
+</div>
+<div class="flex gap-1 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-slate-400 hover:text-primary hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Empty State Example (Hidden normally, but good for completeness in design system) -->
+<!--
+                            <div class="h-32 flex flex-col items-center justify-center border-2 border-dashed border-slate-200 rounded-xl bg-slate-50">
+                                <p class="text-slate-400 text-sm font-medium">No expense categories yet</p>
+                            </div>
+                            -->
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

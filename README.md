@@ -64,6 +64,13 @@ A modern, full-featured finance management dashboard built with Next.js 15, Tail
 - **[Turborepo](https://turbo.build/)** - High-performance build system
 - **[PNPM](https://pnpm.io/)** - Fast, disk space efficient package manager
 
+### Backend (New!)
+- **[Hono](https://hono.dev/)** - Lightweight, ultrafast web framework
+- **[Drizzle ORM](https://orm.drizzle.team/)** - TypeScript ORM with SQL-like syntax
+- **[Supabase](https://supabase.com/)** - PostgreSQL database and backend services
+- **[Better Auth](https://www.better-auth.com/)** - Modern authentication library
+- **[Zod](https://zod.dev/)** - TypeScript-first schema validation
+
 ### Internationalization
 - **[next-intl](https://next-intl-docs.vercel.app/)** - i18n for Next.js
 
@@ -72,32 +79,48 @@ A modern, full-featured finance management dashboard built with Next.js 15, Tail
 ```
 dashboard-finance-ai/
 ├── apps/
-│   └── web/                          # Next.js application
-│       ├── app/
-│       │   ├── [locale]/             # Internationalized routes
-│       │   │   ├── login/            # Login page
-│       │   │   ├── signup/           # Sign up page
-│       │   │   └── dashboard/        # Protected dashboard routes
-│       │   │       ├── page.tsx      # Dashboard overview
-│       │   │       ├── categories/   # Category management (Admin)
-│       │   │       ├── users/        # User management (Admin)
-│       │   │       └── transactions/ # Transaction pages
-│       │   │           ├── new/      # Add transaction
-│       │   │           └── page.tsx  # Transaction history
-│       │   └── globals.css           # Global styles
-│       ├── components/
-│       │   ├── ui/                   # Reusable UI components
-│       │   ├── layout/               # Layout components
-│       │   └── dashboard/            # Dashboard-specific components
-│       ├── stores/                   # Zustand state stores
-│       ├── i18n/                     # Internationalization
-│       ├── lib/                      # Utilities & helpers
-│       └── middleware.ts             # Next.js middleware
+│   ├── web/                          # Next.js frontend application
+│   │   ├── app/
+│   │   │   ├── [locale]/             # Internationalized routes
+│   │   │   │   ├── login/            # Login page
+│   │   │   │   ├── signup/           # Sign up page
+│   │   │   │   └── dashboard/        # Protected dashboard routes
+│   │   │   │       ├── page.tsx      # Dashboard overview
+│   │   │   │       ├── categories/   # Category management (Admin)
+│   │   │   │       ├── users/        # User management (Admin)
+│   │   │   │       └── transactions/ # Transaction pages
+│   │   │   │           ├── new/      # Add transaction
+│   │   │   │           └── page.tsx  # Transaction history
+│   │   │   └── globals.css           # Global styles
+│   │   ├── components/
+│   │   │   ├── ui/                   # Reusable UI components
+│   │   │   ├── layout/               # Layout components
+│   │   │   └── dashboard/            # Dashboard-specific components
+│   │   ├── stores/                   # Zustand state stores
+│   │   ├── i18n/                     # Internationalization
+│   │   ├── lib/                      # Utilities & helpers
+│   │   └── middleware.ts             # Next.js middleware
+│   └── api/                          # Hono REST API server (New!)
+│       ├── src/
+│       │   ├── index.ts              # Server entry point
+│       │   ├── lib/                  # Auth configuration
+│       │   ├── middleware/           # Auth middleware
+│       │   ├── services/             # Business logic layer
+│       │   └── routes/               # API route handlers
+│       └── package.json
 ├── packages/
+│   ├── database/                     # Database package (New!)
+│   │   ├── src/
+│   │   │   ├── schema/               # Drizzle ORM schemas
+│   │   │   ├── client.ts             # Database client
+│   │   │   ├── seed.ts               # Seed script
+│   │   │   └── index.ts
+│   │   └── drizzle.config.ts         # Drizzle configuration
 │   ├── types/                        # Shared TypeScript types
 │   └── config/                       # Shared configuration
 ├── turbo.json                        # Turborepo configuration
 ├── pnpm-workspace.yaml               # PNPM workspace config
+├── BACKEND_SETUP.md                  # Backend setup guide (New!)
 └── package.json                      # Root package.json
 ```
 
@@ -121,14 +144,25 @@ dashboard-finance-ai/
    pnpm install
    ```
 
-3. **Run development server**
+3. **Backend Setup (Optional - for database features)**
+
+   See [BACKEND_SETUP.md](./BACKEND_SETUP.md) for detailed instructions on setting up the database and API server with Supabase.
+
+   Quick start:
+   - Create a Supabase project
+   - Setup environment variables in `packages/database/.env` and `apps/api/.env`
+   - Run database migrations: `cd packages/database && pnpm db:push`
+   - Seed data: `pnpm db:seed`
+
+4. **Run development server**
    ```bash
    pnpm dev
    ```
 
-4. **Open your browser**
+5. **Open your browser**
    - Navigate to `http://localhost:3000`
    - Default redirects to `/en/login`
+   - API server runs on `http://localhost:3001` (if backend is setup)
 
 ### Available Scripts
 
